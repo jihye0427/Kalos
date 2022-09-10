@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<meta charset="EUC-KR">
+<title>Kalos Timer</title>
+</head>
+<body>
+	<!-- 타이머 설정  -->
+	<div>
+		<div id="timer">
+			<span id="min">10</span>
+			<span id="dot">.</span>
+			<span id="sec">0</span>
+		</div>
+		<input type='button' onclick='count("plus")' value='+'/>
+		<input type='button' onclick='count("minus")' value='-'/>
+	</div>
+	
+	<!-- 타이머  -->
+	<div id="time"></div>
+	
+	<!-- 타이머 동작여부  -->
+	<input type='button' onclick='power("start")' value='start'/>
+	<input type='button' onclick='power("stop")' value='stop'/>
+
+</body>
+<script type="text/javascript">
+	let time = 10;
+	let mil = 0;
+	let timerVal;
+	let sum = time + mil;
+	let isPuase = true;
+	
+	// 타이머 설정
+	function count(type)  {
+		  // 결과를 표시할 element
+		  const resultElement = document.getElementById('sec');
+		  
+		  // 현재 화면에 표시된 값
+		  let number = resultElement.innerText;
+		  
+		  // 더하기/빼기
+		  if(type === 'plus') {
+		    number = parseInt(number) + 1;
+		    if (number > 9) return;
+		  }else if(type === 'minus')  {
+		    number = parseInt(number) - 1;
+		    if (number < 0) return;
+		  }
+		  
+		  // 결과 출력
+		  resultElement.innerText = number;
+		  mil = (0.1 * number);
+		  sum = time + mil;
+		 
+		}
+	
+	// 타이머 동작여부
+		function power(type)  {
+			if (type === 'start') {
+				timerVal = setInterval(timer, 1000);
+				if (!isPuase) {
+					clearInterval(timerVal);
+					return;
+				}
+				isPuase = false;
+			
+			} else {
+				clearInterval(timerVal);
+				sum = time + mil;
+				isPuase = true;
+				
+			}
+		 
+		}
+	
+	function timer() {
+		
+		if (!isPuase) {
+			sum--;
+			if (sum < 4 && sum >= 3 ) {
+				var audio = new Audio('/sound/Kalos.mp3');
+				audio.play();
+				audio.ended = true;
+			}
+			if (sum < 0) {
+				sum = time + mil;
+				sum--;
+			}
+			
+			console.log(sum + "초 남았습니다.");
+			
+			
+		}
+				
+	}
+	
+</script>
+</html>
