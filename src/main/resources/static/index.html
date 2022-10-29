@@ -13,8 +13,8 @@
 			<span id="dot">.</span>
 			<span id="sec">0</span>
 		</div>
-		<input type='button' onclick='count("plus")' value='+'/>
-		<input type='button' onclick='count("minus")' value='-'/>
+<!-- 		<input type='button' onclick='count("plus")' value='+'/> -->
+<!-- 		<input type='button' onclick='count("minus")' value='-'/> -->
 	</div>
 	
 	<!-- 타이머  -->
@@ -41,18 +41,18 @@
 		  let number = resultElement.innerText;
 		  
 		  // 더하기/빼기
-		  if(type === 'plus') {
-		    number = parseInt(number) + 1;
-		    if (number > 9) return;
-		  }else if(type === 'minus')  {
-		    number = parseInt(number) - 1;
-		    if (number < 0) return;
-		  }
+// 		  if(type === 'plus') {
+// 		    number = parseInt(number) + 1;
+// 		    if (number > 9) return;
+// 		  }else if(type === 'minus')  {
+// 		    number = parseInt(number) - 1;
+// 		    if (number < 0) return;
+// 		  }
 		  
 		  // 결과 출력
-		  resultElement.innerText = number;
-		  mil = (0.1 * number);
-		  sum = time + mil;
+		//  resultElement.innerText = number;
+		//  mil = (0.1 * number);
+		 // sum = time + mil;
 		 
 		}
 	
@@ -68,7 +68,7 @@
 			
 			} else {
 				clearInterval(timerVal);
-				sum = time + mil;
+				//sum = time + mil;
 				isPuase = true;
 				
 			}
